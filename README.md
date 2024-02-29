@@ -14,9 +14,9 @@ Make sure you have the following tools installed on your machine:
 
 1. Create a database in MySQL to store application data:
 
-   ```sql
-   CREATE DATABASE starwars_planets;
-    ```
+```sql
+CREATE DATABASE starwars_planets;
+```
 
 2. Update the database connection settings in the application.properties file of the Spring Boot project.
 ```properties
@@ -58,13 +58,13 @@ The application will be available at http://localhost:8080.
 
 * PUT /planets/{id}: Updates information of an existing planet by ID. Send a JSON in the request body.
     
-    ```json
-    {
-    "name": "Tatooine",
-    "climate": "Arid",
-    "terrain": "Desert"
-    }
-    ```
+```json
+{
+"name": "Tatooine",
+"climate": "Arid",
+"terrain": "Desert"
+}
+```
 * DELETE /planets/{id}: Deletes a planet by ID.
 
 ## Contributing
