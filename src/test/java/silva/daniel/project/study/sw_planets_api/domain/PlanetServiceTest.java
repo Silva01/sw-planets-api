@@ -12,11 +12,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static silva.daniel.project.study.sw_planets_api.commons.PlanetCommonsConstantEnum.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -115,6 +114,18 @@ class PlanetServiceTest {
 
         var sutWithOnlyTerrain = service.list(null, PLANET_WITH_ID.getTerrain());
         assertThat(sutWithOnlyTerrain).isEmpty();
+    }
+
+    @Test
+    void removePlanet_WithExistingId_DoesNotThrowAnyException() {
+        assertThatCode(() -> service.delete(1L)).doesNotThrowAnyException();
+    }
+
+    @Test
+    void removePlanet_WithUnexistingId_ThrowAnyException() {
+        doThrow(new RuntimeException()).when(repository).deleteById(1L);
+        assertThatThrownBy(() -> service.delete(1L))
+            .isInstanceOf(RuntimeException.class);
     }
 
 

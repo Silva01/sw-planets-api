@@ -41,4 +41,10 @@ public class PlanetController {
     public ResponseEntity<List<Planet>> getAll(@RequestParam(required = false) String name, @RequestParam(required = false) String terrain) {
         return ResponseEntity.ok(planetService.list(name, terrain));
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> delete(@RequestParam Long id) {
+        planetService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

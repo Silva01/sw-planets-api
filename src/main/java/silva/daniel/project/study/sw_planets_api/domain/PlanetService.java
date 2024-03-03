@@ -31,4 +31,8 @@ public class PlanetService {
         Example<Planet> example = QueryBuilder.makeQuery(new Planet(name, terrain));
         return planetRepository.findAll(example);
     }
+
+    public void delete(Long id) {
+        planetRepository.deleteById(id);
+    }
 }
