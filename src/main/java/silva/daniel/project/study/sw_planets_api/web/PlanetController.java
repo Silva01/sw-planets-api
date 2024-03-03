@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import silva.daniel.project.study.sw_planets_api.domain.Planet;
 import silva.daniel.project.study.sw_planets_api.domain.PlanetService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/planets")
 public class PlanetController {
@@ -33,5 +35,10 @@ public class PlanetController {
         return planetService.getByName(name)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Planet>> getAll(@RequestParam(required = false) String name, @RequestParam(required = false) String terrain) {
+        return ResponseEntity.ok(planetService.list(name, terrain));
     }
 }
