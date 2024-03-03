@@ -11,6 +11,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 import static silva.daniel.project.study.sw_planets_api.commons.PlanetCommonsConstantEnum.*;
 
@@ -56,6 +57,24 @@ class PlanetServiceTest {
         when(repository.findById(anyLong())).thenReturn(Optional.empty());
 
         var sut = service.getById(1L);
+        assertThat(sut).isEmpty();
+    }
+
+    @Test
+    void getPlanet_ByExistingName_ReturnsPlanet() {
+        when(repository.findByName(anyString())).thenReturn(Optional.of(PLANET_WITH_ID));
+
+        var sut = service.getByName(PLANET_WITH_ID.getName());
+
+        assertThat(sut).isNotEmpty();
+        assertThat(sut.get()).isEqualTo(PLANET_WITH_ID);
+    }
+
+    @Test
+    void getPlanet_ByUnexistingName_ReturnsEmpty() {
+        when(repository.findByName(anyString())).thenReturn(Optional.empty());
+
+        var sut = service.getByName(PLANET_WITH_ID.getName());
         assertThat(sut).isEmpty();
     }
 
