@@ -2,10 +2,7 @@ package silva.daniel.project.study.sw_planets_api.web;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import silva.daniel.project.study.sw_planets_api.domain.Planet;
 import silva.daniel.project.study.sw_planets_api.domain.PlanetService;
 
@@ -22,5 +19,19 @@ public class PlanetController {
     @PostMapping
     public ResponseEntity<Planet> create(@RequestBody Planet planet) {
         return ResponseEntity.status(HttpStatus.CREATED).body(planetService.create(planet));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Planet> get(@PathVariable("id") Long id) {
+        return planetService.getById(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Planet> getByName(@PathVariable("name") String name) {
+        return planetService.getByName(name)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
     }
 }

@@ -1,10 +1,26 @@
 package silva.daniel.project.study.sw_planets_api.domain;
 
 import jakarta.persistence.*;
+import org.apache.commons.lang.builder.EqualsBuilder;
 
 @Entity
 @Table(name = "planets")
 public class Planet {
+
+    public Planet(String name, String climate, String terrain) {
+        this(null, name, climate, terrain);
+    }
+
+    public Planet(Long id, String name, String climate, String terrain) {
+        this.id = id;
+        this.name = name;
+        this.climate = climate;
+        this.terrain = terrain;
+    }
+
+    public Planet() {
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,5 +59,10 @@ public class Planet {
 
     public void setTerrain(String terrain) {
         this.terrain = terrain;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(this, obj);
     }
 }
