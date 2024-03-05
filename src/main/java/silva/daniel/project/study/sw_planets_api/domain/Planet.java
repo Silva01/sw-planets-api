@@ -1,11 +1,28 @@
 package silva.daniel.project.study.sw_planets_api.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import org.apache.commons.lang.builder.EqualsBuilder;
 
 @Entity
-@Table(name = "planets")
+@Table(name = "planets", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Planet {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotEmpty
+    @Column(nullable = false)
+    private String name;
+
+    @NotEmpty
+    @Column(nullable = false)
+    private String climate;
+
+    @NotEmpty
+    @Column(nullable = false)
+    private String terrain;
 
     public Planet(String name, String climate, String terrain) {
         this(null, name, climate, terrain);
@@ -21,13 +38,6 @@ public class Planet {
     public Planet() {
 
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String climate;
-    private String terrain;
 
     public Planet(String name, String terrain) {
         this(null, name, null, terrain);
