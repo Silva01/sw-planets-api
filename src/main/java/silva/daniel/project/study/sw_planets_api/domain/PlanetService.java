@@ -1,6 +1,5 @@
 package silva.daniel.project.study.sw_planets_api.domain;
 
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
