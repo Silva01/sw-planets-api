@@ -31,9 +31,6 @@ import static silva.daniel.project.study.sw_planets_api.commons.PlanetCommonsCon
 class PlanetControllerTest {
 
     @Autowired
-    private PlanetController planetController;
-
-    @Autowired
     private ObjectMapper objectMapper;
 
     @Autowired
