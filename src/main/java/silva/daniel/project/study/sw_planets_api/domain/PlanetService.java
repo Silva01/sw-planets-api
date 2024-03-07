@@ -10,7 +10,6 @@ import java.util.Optional;
 public class PlanetService {
 
     private final PlanetRepository planetRepository;
-    private String teste = "";
 
     public PlanetService(PlanetRepository planetRepository) {
         this.planetRepository = planetRepository;
