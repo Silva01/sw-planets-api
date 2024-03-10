@@ -3,6 +3,7 @@ package silva.daniel.project.study.sw_planets_api.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import org.apache.commons.lang.builder.EqualsBuilder;
+import silva.daniel.project.study.sw_planets_api.jacoco.ExcludeFromJacocoGeneratedReport;
 
 @Entity
 @Table(name = "planets", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
@@ -78,5 +79,11 @@ public class Planet {
     @Override
     public boolean equals(Object obj) {
         return EqualsBuilder.reflectionEquals(this, obj);
+    }
+
+    @ExcludeFromJacocoGeneratedReport
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
