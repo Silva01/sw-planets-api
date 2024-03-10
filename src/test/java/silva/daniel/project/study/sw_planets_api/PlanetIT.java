@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
+import silva.daniel.project.study.sw_planets_api.commons.MysqlTestContainer;
 import silva.daniel.project.study.sw_planets_api.domain.Planet;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +20,7 @@ import static silva.daniel.project.study.sw_planets_api.commons.PlanetCommonsCon
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Sql(scripts = {"/import_planets.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = {"/delete_planets.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-class PlanetIT {
+class PlanetIT extends MysqlTestContainer {
 
     @Autowired
     private TestRestTemplate restTemplate;
